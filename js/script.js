@@ -2,7 +2,9 @@ const openCase = document.getElementById("open-case");
 const openExperemental = document.getElementById("open-experemental");
 const openSocials = document.getElementById("open-contact");
 const shadow = document.getElementById("back-shadow");
-const menu = document.getElementById("menu");
+const menu = document.getElementById("socials-menu");
+const openBurgerMenu = document.getElementById("burger")
+const burgerMenu = document.getElementById("burger-menu")
 
 function openModal() {
     shadow.classList.add("active");
@@ -19,19 +21,10 @@ shadow.onclick = function(event) {
     if (event.target === shadow) {
         closeModal();
     }
-};
-
-
-function openMenu() {
-    menu.classList.add("active");
-}
-
-function closeMenu() {
-    menu.classList.remove("active");
 }
 
 openSocials.addEventListener("click", function(event) {
-    event.stopPropagation(); // Не дает документу сразу же закрыть меню
+    event.stopPropagation();
     menu.classList.toggle("active");
 });
 
@@ -40,3 +33,14 @@ document.addEventListener("click", function(event) {
         menu.classList.remove("active");
     }
 });
+
+openBurgerMenu.addEventListener("click", function(event) {
+    event.stopPropagation();
+    burgerMenu.classList.toggle("active");
+})
+
+document.addEventListener("click", function(event) {
+    if (!event.target.closest("#burgerMenu")) {
+        burgerMenu.classList.remove("active");
+    }
+})
