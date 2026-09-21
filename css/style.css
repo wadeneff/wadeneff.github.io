@@ -259,7 +259,7 @@ html, body {
     align-items: center;
 
     position: fixed;
-    z-index: 2;
+    z-index: 10;
     left: 0;
     top: 0;
 
@@ -304,7 +304,9 @@ html, body {
 
 @media screen and (max-width: 939px) { 
     .header {
-        grid-template-columns: 15px 100px auto 50px 15px ;
+        grid-template-columns: 15px 100px auto 50px 15px;
+        position: relative;
+        z-index: 2;
     }
 
     .header-frame {
@@ -402,5 +404,9 @@ html, body {
 
     .meta-frame {
         padding: 10px;
+    }
+
+    .modal {
+        height: 80%;
     }
 }
