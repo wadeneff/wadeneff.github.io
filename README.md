@@ -1,3 +1,3 @@
 # wadeneff.github.io
 
-Личный сайт.
+Стек: HTML, CSS, JS.
