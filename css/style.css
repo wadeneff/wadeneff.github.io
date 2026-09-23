@@ -577,8 +577,17 @@ html, body {
     }
 
     .projectList {
+        display: flex;
+        flex-direction: column;
+
         grid-template-columns: 100%;
-        grid-template-rows: 30% 30% 30%;
+        grid-template-rows: 40% 40%;
+
+        padding: 4%;
+    }
+
+    .projectCard {
+        min-height: 150px;
     }
 
     .cardDescriptionHeader {
@@ -604,5 +613,9 @@ html, body {
         border-radius: 10px;
         transform: scale(120%);
         transition: transform, box-shadow, 0.5s;
+    }
+
+    .card-img-arrow:hover {
+        box-shadow: none;
     }
 }
