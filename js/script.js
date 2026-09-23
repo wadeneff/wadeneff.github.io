@@ -1,42 +1,51 @@
 const shadow = document.getElementById("back-shadow");
 
-shadow.onclick = function(event) {
-    if (event.target === shadow) {
-        closeModalCase();
-    }
-}
 
-const openCase = document.getElementById("open-case");
-const openExperemental = document.getElementById("open-experemental");
 const modalCase = document.getElementById('modal-case')
+const modalExperemental = document.getElementById('modal-experemental')
 
-openCase.onclick = openModalCase;
-// openExperemental.onclick = openModal;
+const modals = [modalCase, modalExperemental]
 
-const burgerCase = document.getElementById('burger-case-frame')
-const burgerExperemental = document.getElementById('burger-experemental-frame')
+const openCase = document.getElementById("open-case")
+const openExperemental = document.getElementById('open-experemental');
 
-burgerCase.onclick = openModalCase;
-// burgerExperemental.onclick = openModal;
+const burgerOpenCase = document.getElementById('burger-case-frame')
+const burgerOpenExperemental = document.getElementById('burger-experemental-frame')
 
-
-function openShadow() {
-    shadow.classList.add("active");
+function openModal(modal) {
+    shadow.classList.add('active');
+    modal.classList.add('active');
 }
 
-function closeShadow() {
-    shadow.classList.remove("active");
+function closeAllModals() {
+    modals.forEach(m => m.classList.remove('active'));
+    shadow.classList.remove('active');
 }
 
-function openModalCase() {
-    openShadow()
-    modalCase.classList.add('active')
-}
+openCase.addEventListener('click', function (event) {
+    event.stopPropagation();
+    modalCase.classList.contains('active') ? closeAllModals() : openModal(modalCase);
+});
 
-function closeModalCase() {
-    closeShadow()
-    modalCase.classList.remove('active')
-}
+burgerOpenCase.addEventListener('click', function (event) {
+    event.stopPropagation();
+    modalCase.classList.contains('active') ? closeAllModals() : openModal(modalCase);
+});
+
+openExperemental.addEventListener('click', function (event) {
+    event.stopPropagation();
+    modalExperemental.classList.contains('active') ? closeAllModals() : openModal(modalExperemental);
+});
+
+burgerOpenExperemental.addEventListener('click', function (event) {
+    event.stopPropagation();
+    modalExperemental.classList.contains('active') ? closeAllModals() : openModal(modalExperemental);
+});
+
+shadow.addEventListener('click', function (event) {
+    const clickedInsideModal = modals.some(m => event.target.closest('#' + m.id));
+    if (!clickedInsideModal) closeAllModals();
+});
 
 const openSocials = document.getElementById("open-contact");
 const burgerOpenSocials = document.getElementById("burger-contact-frame");
@@ -80,7 +89,7 @@ document.addEventListener("click", function(event) {
     }
 })
 
-document.querySelectorAll('.case-img').forEach(function (container) {
+document.querySelectorAll('.card-img').forEach(function (container) {
     const img = container.querySelector('img');
     const raw = img.dataset.images;
     if (!raw) return; // у кейса одна картинка — стрелки не нужны
@@ -95,8 +104,8 @@ document.querySelectorAll('.case-img').forEach(function (container) {
         img.src = images[index];
     }
 
-    const prev = container.querySelector('.case-img-prev');
-    const next = container.querySelector('.case-img-next');
+    const prev = container.querySelector('.card-img-prev');
+    const next = container.querySelector('.card-img-next');
 
     prev.addEventListener('click', function (event) {
         event.stopPropagation();

@@ -302,7 +302,7 @@ html, body {
     pointer-events: auto;
 }
 
-.caseList {
+.projectList {
     width: 100%;
     height: 90%;
 
@@ -314,22 +314,24 @@ html, body {
     gap: 5% 2%;
 }
 
-.projectCase {
+.projectCard {
     display: grid;
     grid-template-columns: 60% 40%;
     grid-template-rows: 100%;
+    align-content: center;
 
+    box-shadow: 0px 0px 10px 1px grey;
     background-color: #1a1a1a;
     border-radius: 10px;
 }
 
-.projectCase:hover {
+.projectCard:hover {
     transform: scale(103%);
-    box-shadow: 0px 0px 10px 1px gray;
+    box-shadow: 0px 0px 10px 1px white;
     transition: transform, box-shadow 0.5s
 }
 
-.caseDescription {
+.cardDescription {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 20% 60% 20%;
@@ -339,11 +341,10 @@ html, body {
     margin: 0;
 }
 
-.caseDescriptionHeader {
+.cardDescriptionHeader {
     font-family: Ari-Bold;
     color: white;
     font-size: 23px;
-    align-self: center;
     text-decoration: none;
 
     padding: 0;
@@ -351,13 +352,13 @@ html, body {
     cursor: pointer;
 }
 
-.caseDescriptionHeader:hover{
+.cardDescriptionHeader:hover{
     color: #f957ff;
     transform: scale(105%) translateX(5px);
     transition: color, transform 0.3s;
 }
 
-.caseDescriptionMeta {
+.cardDescriptionMeta {
     font-family: Ari;
     color: white;
     font-size: 20px;
@@ -367,30 +368,29 @@ html, body {
     margin: 0px 0px 0px 15px;
 }
 
-.caseLinks {
+.cardLinks {
     display: flex;
     align-items: center;
 }
 
-.caseDescriptionLinks {
+.cardDescriptionLinks {
     font-family: Ari;
     color: white;
     font-size: 18px;
     text-align: right;
-    text-decoration: none;
 
     padding: 0;
     margin: 0px 0px 0px 15px;
     cursor: pointer;
 }
 
-.caseDescriptionLinks:hover{
+.cardDescriptionLinks:hover{
     color: #f957ff;
     transform: scale(105%);
     transition: color, transform 0.3s;
 }
 
-.case-img img{
+.card-img img{
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -398,12 +398,12 @@ html, body {
     cursor: pointer;
 }
 
-.case-img {
+.card-img {
     position: relative;   /* точка отсчёта для стрелок */
     overflow: hidden;
 }
 
-.case-img-arrow {
+.card-img-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -428,24 +428,48 @@ html, body {
     transition: opacity 0.2s;
 }
 
-.case-img-arrow:hover {
+.card-img-arrow:hover {
     box-shadow: 0px 0px 10px 3px gray;
     transition: box-shadow 0.2s
 }
 
-.case-img:hover .case-img-arrow {
+.card-img:hover .card-img-arrow {
     opacity: 1;
     pointer-events: auto;
 }
 
-.case-img-prev { left: 10px; }
-.case-img-next { right: 10px; }
+.card-img-prev { left: 10px; }
+.card-img-next { right: 10px; }
 
-.case-img:hover {
-    box-shadow: 0px 0px 10px 1px gray;
+.card-img:hover {
+    box-shadow: 0px 0px 10px 1px white;
     border-radius: 10px;
     transform: scale(105%);
     transition: transform, box-shadow, 0.5s;
+}
+
+.modal-experemental {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+
+    width: 100%;
+    height: 80%;
+
+    border-radius: 20px;
+    background-color: #1a1a1a;
+
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-experemental.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 @media screen and (max-width: 939px) { 
@@ -552,7 +576,33 @@ html, body {
         padding: 10px;
     }
 
-    .modal {
-        height: 80%;
+    .projectList {
+        grid-template-columns: 100%;
+        grid-template-rows: 30% 30% 30%;
+    }
+
+    .cardDescriptionHeader {
+        font-size: 13px;
+    }
+
+    .cardDescriptionMeta {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    .cardDescriptionLinks {
+        font-size: 10px;
+    }
+
+    .card-img {
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 1px grey;
+    }
+
+    .card-img:hover {
+        box-shadow: 0px 0px 10px 1px white;
+        border-radius: 10px;
+        transform: scale(120%);
+        transition: transform, box-shadow, 0.5s;
     }
 }
