@@ -2,22 +2,22 @@ const shadow = document.getElementById("back-shadow");
 
 shadow.onclick = function(event) {
     if (event.target === shadow) {
-        closeModal();
+        closeModalCase();
     }
 }
 
 const openCase = document.getElementById("open-case");
 const openExperemental = document.getElementById("open-experemental");
-const modal = document.getElementById('modal')
+const modalCase = document.getElementById('modal-case')
 
-openCase.onclick = openModal;
-openExperemental.onclick = openModal;
+openCase.onclick = openModalCase;
+// openExperemental.onclick = openModal;
 
 const burgerCase = document.getElementById('burger-case-frame')
 const burgerExperemental = document.getElementById('burger-experemental-frame')
 
-burgerCase.onclick = openModal;
-burgerExperemental.onclick = openModal;
+burgerCase.onclick = openModalCase;
+// burgerExperemental.onclick = openModal;
 
 
 function openShadow() {
@@ -28,14 +28,14 @@ function closeShadow() {
     shadow.classList.remove("active");
 }
 
-function openModal() {
+function openModalCase() {
     openShadow()
-    modal.classList.add('active')
+    modalCase.classList.add('active')
 }
 
-function closeModal() {
+function closeModalCase() {
     closeShadow()
-    modal.classList.remove('active')
+    modalCase.classList.remove('active')
 }
 
 const openSocials = document.getElementById("open-contact");
@@ -79,3 +79,32 @@ document.addEventListener("click", function(event) {
         burgerMenu.classList.remove("active");
     }
 })
+
+document.querySelectorAll('.case-img').forEach(function (container) {
+    const img = container.querySelector('img');
+    const raw = img.dataset.images;
+    if (!raw) return; // у кейса одна картинка — стрелки не нужны
+
+    const images = JSON.parse(raw);
+    if (images.length < 2) return;
+
+    let index = 0;
+
+    function show(newIndex) {
+        index = (newIndex + images.length) % images.length; // зацикливаем
+        img.src = images[index];
+    }
+
+    const prev = container.querySelector('.case-img-prev');
+    const next = container.querySelector('.case-img-next');
+
+    prev.addEventListener('click', function (event) {
+        event.stopPropagation();
+        show(index - 1);
+    });
+
+    next.addEventListener('click', function (event) {
+        event.stopPropagation();
+        show(index + 1);
+    });
+});

@@ -278,15 +278,15 @@ html, body {
     pointer-events: auto;
 }
 
-.modal {
-    display: flex; /* flex */
+.modal-case {
+    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
     z-index: 3;
 
-    width: 80%;
-    height: 40%;
+    width: 100%;
+    height: 80%;
 
     border-radius: 20px;
     background-color: #1a1a1a;
@@ -297,9 +297,155 @@ html, body {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal.active {
+.modal-case.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+.caseList {
+    width: 100%;
+    height: 90%;
+
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-template-rows: 47.5% 47.5%;
+
+    padding: 3%;
+    gap: 5% 2%;
+}
+
+.projectCase {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 100%;
+
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+
+.projectCase:hover {
+    transform: scale(103%);
+    box-shadow: 0px 0px 10px 1px gray;
+    transition: transform, box-shadow 0.5s
+}
+
+.caseDescription {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 60% 20%;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
+}
+
+.caseDescriptionHeader {
+    font-family: Ari-Bold;
+    color: white;
+    font-size: 23px;
+    align-self: center;
+    text-decoration: none;
+
+    padding: 0;
+    margin: 0px 0px 0px 15px;
+    cursor: pointer;
+}
+
+.caseDescriptionHeader:hover{
+    color: #f957ff;
+    transform: scale(105%) translateX(5px);
+    transition: color, transform 0.3s;
+}
+
+.caseDescriptionMeta {
+    font-family: Ari;
+    color: white;
+    font-size: 20px;
+    line-height: 25px;
+
+    padding: 0;
+    margin: 0px 0px 0px 15px;
+}
+
+.caseLinks {
+    display: flex;
+    align-items: center;
+}
+
+.caseDescriptionLinks {
+    font-family: Ari;
+    color: white;
+    font-size: 18px;
+    text-align: right;
+    text-decoration: none;
+
+    padding: 0;
+    margin: 0px 0px 0px 15px;
+    cursor: pointer;
+}
+
+.caseDescriptionLinks:hover{
+    color: #f957ff;
+    transform: scale(105%);
+    transition: color, transform 0.3s;
+}
+
+.case-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: fill;
+    cursor: pointer;
+}
+
+.case-img {
+    position: relative;   /* точка отсчёта для стрелок */
+    overflow: hidden;
+}
+
+.case-img-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.case-img-arrow:hover {
+    box-shadow: 0px 0px 10px 3px gray;
+    transition: box-shadow 0.2s
+}
+
+.case-img:hover .case-img-arrow {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.case-img-prev { left: 10px; }
+.case-img-next { right: 10px; }
+
+.case-img:hover {
+    box-shadow: 0px 0px 10px 1px gray;
+    border-radius: 10px;
+    transform: scale(105%);
+    transition: transform, box-shadow, 0.5s;
 }
 
 @media screen and (max-width: 939px) { 
